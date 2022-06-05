@@ -7,7 +7,7 @@ const authStore = useAuthStore();
 // const profileStore = useProfileStore();
 // profileStore.fetchProfiles();
 authStore.loadUser();
-authStore.loadUserProfile();
+// authStore.loadUserProfile();
 // authStore.loadUserProfile();
 // profileStore.fetchUserProfile();
 
@@ -18,7 +18,7 @@ authStore.loadUserProfile();
 supabase.auth.onAuthStateChange((event) => {
   if (event === 'SIGNED_IN') {
     authStore.loadUser();
-    authStore.loadUserProfile();
+    // authStore.loadUserProfile();
   }
 });
 
@@ -26,17 +26,18 @@ supabase.auth.onAuthStateChange((event) => {
 
 <template>
 <div>
-  <div v-if='authStore.isAuthenticated'>
-  <p>{{authStore.hasProfile}}</p>
-    <account-creation v-if="!authStore.hasProfile" />
-    <NuxtLayout v-else name="default">
+  <!-- <div v-if='authStore.isAuthenticated'> -->
+  <p>User ID:</p>
+  <p>{{authStore.getCurrentUserID}}</p>
+    <!-- <account-creation v-if="!authStore.hasProfile" /> -->
+    <NuxtLayout name="default">
       <!-- <NuxtWelcome /> -->
         <!-- <account-creation v-if="profileStore.hasProfile" /> -->
         <NuxtPage />
     </NuxtLayout>
   </div>
-  <login-vue v-else />
-</div>
+  <!-- <login-vue v-else /> -->
+
   
 
 </template>

@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-
 import { useAuthStore } from '@/stores/auth';
 const supabase = useSupabaseClient()
 
@@ -25,14 +24,17 @@ async function signIn() {
 <template>
     <div>
         <main>
-            <div class="p-16 flex justify-center items-center mb-4 sm:mb-0">
+            <!-- <div class="p-16 flex justify-center items-center mb-4 sm:mb-0">
                 <img src="@/assets/images/yfiobtran.png" class="w-auto h-20" alt="YFIOB Logo" />
             </div>
             <div class="bg-[#5b50dd] w-auto h-auto flex justify-center items-center">
                 <h1 class="p-12 font-mono font-extrabold text-center text-5xl antialiased text-white">Community Mentorship Platform</h1>
-            </div>
+            </div> -->
+            <!-- <div class="bg-[#5b50dd] w-auto h-auto flex justify-center items-center">
+                <h1 class="p-12 font-mono font-extrabold text-center text-5xl antialiased text-white">Account Creation</h1>
+            </div> -->
             <div class="w-auto h-auto flex justify-center items-center">
-                <h1 class="p-12 font-mono font-extrabold text-center text-5xl antialiased text-[#5b50dd]">Welcome !</h1>
+                <h1 class="p-12 font-mono font-extrabold text-center text-5xl antialiased text-[#5b50dd]">Create your account here </h1>
             </div>
             <div class="w-auto h-auto flex justify-center items-center">
                 <!-- <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs border-black border-2" /> -->

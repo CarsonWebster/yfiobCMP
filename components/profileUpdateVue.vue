@@ -2,12 +2,10 @@
 import { useAuthStore } from '@/stores/auth';
 import useSupabase from '~/composables/useSupabase'
 const {supabase} = useSupabase();
-// import {useProfileStore } from '@/stores/profiles'
 const authStore = useAuthStore();
 authStore.loadUser();
 const currentUserId = authStore.getCurrentUserID;
-// console.log('Current user ID', currentUserId)
-// const profileStore = useProfileStore();
+
 const username = ref('')
 const firstname = ref('')
 const lastname = ref('')
@@ -34,39 +32,11 @@ async function updateProfile() {
     authStore.loadUserProfile();
     
 }
-async function logInfo() {
-    console.log('Loggin info...')
-    console.log('Has profile? ', authStore.hasProfile)
-    console.log('Current profile? ', authStore.getUserProfile)
-    console.log('Fetching profiles')
-    // authStore.fetchUserProfile()
-    console.log('Has profile? ', authStore.hasProfile)
-    console.log('Current profile? ', authStore.getUserProfile)
-}
-
-const isSigningIn = ref(false);
-async function signIn() {
-  try {
-    isSigningIn.value = true;
-    const { error } = await supabase.auth.signIn({ provider: 'google' });
-
-    if (error) {
-      throw error;
-    }
-  } catch (error) {
-    console.error(error);
-    alert('Something went wrong! Check the console for more details');
-  } finally {
-    isSigningIn.value = false;
-  }
-}
 </script>
 
 <template>
     <div>
-        <div v-if='currentUserId' class="w-auto h-auto flex justify-center items-center rounded-md">
-            <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
-                <!-- <form> -->
+        <form>
                     <div class="form-group mb-6">
                         <input type="test" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="accountCreationFormUsername" :placeholder="profile.username" v-model="username">
                     </div>
@@ -108,21 +78,6 @@ async function signIn() {
                     <button @click='updateProfile' type="submit" class=" w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Update Information</button>
                     <!-- <button @click="logInfo">LogInfo</button>
                     <button @click="authStore.loadUserProfile">loadUserProfile</button> -->
-                <!-- </form> -->
-            </div>
-        </div>
-        <div v-else>
-            <div class="w-auto h-auto flex justify-center items-center">
-                <h1 class="p-12 font-mono font-extrabold text-center text-2xl antialiased text-[#5b50dd]">Welcome, create your account</h1>
-            </div>
-            <div class="w-auto h-auto flex justify-center items-center">
-                <!-- <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs border-black border-2" /> -->
-                <p v-if="isSigningIn">Please wait...</p>
-                <button v-else @click="signIn()" type="button" class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
-                    <svg class="w-4 h-4 mr-2 -ml-1" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
-                    Sign in with Google
-                </button>
-            </div>
-        </div>
+                </form>
     </div>
 </template>

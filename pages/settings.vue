@@ -1,4 +1,15 @@
 <script setup lang="ts">
+import { useAuthStore } from '@/stores/auth';
+import useSupabase from '~/composables/useSupabase'
+const {supabase} = useSupabase();
+const authStore = useAuthStore();
+authStore.loadUser()
+const currentUserId = authStore.getCurrentUserID;
+let { data: profile, error } = await supabase
+          .from('profiles')
+          .select('*')
+          .match({user_id: currentUserId})
+          .single()
 </script>
 <template>
 <div >
@@ -27,7 +38,11 @@
             </aside>
             <!-- Main Content -->
             <main role="main" class="w-full sm:w-2/3 md:w-3/4 pt-1 px-2">
-                <account-update />
+                <login-vue v-if='!currentUserId'/>
+                <div v-else>
+                    <profile-creation-vue v-if='!profile' />
+                    <profile-update-vue v-else />
+                </div>
             </main>
         </div>
     </div>

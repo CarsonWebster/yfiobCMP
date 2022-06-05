@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import useSupabase from '~/composables/useSupabase'
 import { User } from '@supabase/supabase-js';
-
+const {user} = useAuth();
 const {supabase} = useSupabase();
 
 type State = {
@@ -12,6 +12,7 @@ type Getters = {
   isAuthenticated(): boolean;
   hasProfile(): boolean;
   getUserProfile(): void;
+  getCurrentUserID(): string;
 };
 
 type Actions = {
@@ -29,7 +30,7 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
   {
     state() {
       return {
-        currentUser: null,
+        currentUser: user,
         profiles: [],
         currentProfile: null,
       };
@@ -43,6 +44,13 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
       },
       getUserProfile() {
         return this.currentProfile;
+      },
+      getCurrentUserID() {
+        if(this.currentUser) {
+          return this.currentUser.id
+        } else {
+          return null
+        }
       }
     },
     actions: {
@@ -54,15 +62,16 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
       },
       async loadUserProfile() {
         // console.log('Hey!', this.currentUser.id)
-        if (supabase.auth.user()) {
+        if (user) {
           let { data: profile, error } = await supabase
           .from('profiles')
           .select('*')
-          .match({user_id: supabase.auth.user().id})
+          .match({user_id: user.value.id})
           .single()
           if (error) throw error
           console.log('Success Loaded Profile', profile)
           this.currentProfile = profile
+          
         } else {
           console.log('no user')
         }
