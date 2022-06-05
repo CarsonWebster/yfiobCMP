@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/auth';
-import {useProfileStore } from '@/stores/profiles'
-const profiileStore = useProfileStore();
-const profiles = await profiileStore.fetchProfiles();
-console.log('New profiles', profiles)
+// import {useProfileStore } from '@/stores/profiles'
+// const profileStore = useProfileStore();
+// const profiles = await profileStore.fetchProfiles();
+// const userProfile = await profileStore.fetchUserProfile();
+// console.log('New profiles', profiles)
+// console.log('userProfile: ', userProfile)
+// console.log('hasProfile: ', profileStore.hasProfile)
 let mentors = ["Karim Benzema", "Ted Mosby", "Lily Aldrin","Robin Scherbatsky"];
 
 </script>
