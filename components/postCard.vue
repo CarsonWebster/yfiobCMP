@@ -54,7 +54,7 @@ const postCardprops = defineProps<PostCardProps>();
     <!-- <p class="text-black dark:text-white block text-xl leading-snug mt-3">This is an example of a text post any mentor can post. They can provide insightful information to students or provide links to helpful resources for careers and other info.</p> -->
     <p class="text-black dark:text-white block text-xl leading-snug mt-3">{{content}}</p>
     <!-- Card Image -->
-    <img class="mt-2 rounded-2xl border border-gray-100 dark:border-gray-700" src="https://www.santacruzsbdc.org/wp-content/uploads/sites/4/2021/05/YFIOB-1024x607.jpg"/>
+    <!-- <img class="mt-2 rounded-2xl border border-gray-100 dark:border-gray-700" src="https://www.santacruzsbdc.org/wp-content/uploads/sites/4/2021/05/YFIOB-1024x607.jpg"/> -->
     <!-- time and date -->
     <!-- <p class="text-gray-500 dark:text-gray-400 text-base py-1 my-0.5">10:05 AM · Dec 19, 2020</p> -->
     <!-- Footer line -->
