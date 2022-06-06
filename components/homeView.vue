@@ -1,25 +1,10 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/auth';
 import {usePostStore } from '@/stores/posts'
-// const {supabase} = useSupabase();
-// const router = useRouter()
-// const authStore = useAuthStore();
+const authStore = useAuthStore();
 const postStore = usePostStore();
 const posts = await postStore.fetchPosts();
-// const posts = useAsyncData('posts', async () => {postStore.getPosts}
-// router.push('')
-// const { data: posts } = useAsyncData('posts', async () => {
-//   const { data: posts, error } = await supabase.from('posts').select('*')
-//     // console.log("Return data")
-//     // console.log(posts)
-//   return posts
-// })
-// postStore.refreshPosts();
-// const posts = postStore.getPosts
-// async function logPosts() {
-//     console.log('Logging new posts')
-//     console.log(postStore.getPosts)
-// }
+
 
 </script>
 
@@ -31,7 +16,9 @@ const posts = await postStore.fetchPosts();
             <div class="w-fixed w-full flex-shrink flex-grow-0 px-4">
                 <div class="sticky top-0 p-4 w-full h-full">
                     <!-- leftside goes here -->
-                    <FilterBox />
+                    <!-- <FilterBox /> -->
+                    <!-- <button @click='createPost' class=" w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Create Post</button> -->
+                    <label for="createpost-modal" class="btn modal-button">Create Post</label>
                 </div>
             </div>
             <main role="main" class="w-full flex-grow pt-1 px-3">
@@ -39,7 +26,7 @@ const posts = await postStore.fetchPosts();
                 <!-- fluid-width: main content goes here -->
                 <ul>
                     <li v-for="post in posts" v-bind:key="post.id">
-                        <PostCard :title='post.name' :content='post.content' :author='post.author'/>
+                        <PostCard :title='post.name' :content='post.content' :author='post.author' :username='post.username'/>
                     </li>
                 </ul>
             </main>
@@ -50,6 +37,20 @@ const posts = await postStore.fetchPosts();
                     <adBox />
                 </div>
             </div>
+        </div>
+        <input type="checkbox" id="createpost-modal" class="modal-toggle" />
+        <div class="modal">
+        <div class="modal-box">
+            <!-- <h3 class="font-bold text-lg">Congratulations random Interner user!</h3> -->
+            <!-- <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p> -->
+            <!-- <p v-if="authStore.getCurrentUserID">Logged In</p>
+            <p v-else >No sign in </p> -->
+            <create-post v-if="authStore.loadUserProfile" />
+            <p v-else >Go to Account Settings and create a profile first!</p>
+            <div class="modal-action">
+            <label for="createpost-modal" class="btn">Exit</label>
+            </div>
+        </div>
         </div>
     </div>
 </template>

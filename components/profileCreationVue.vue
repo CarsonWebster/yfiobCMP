@@ -8,6 +8,7 @@ const lastname = ref('')
 const pronouns = ref('')
 const gradyear = ref('')
 const bio = ref('')
+const profession = ref('')
 
 async function uploadProfile() {
     console.log('Uploading profile!')
@@ -17,7 +18,7 @@ async function uploadProfile() {
     console.log('pronouns.value', pronouns.value)
     console.log('gradyear.value', gradyear.value)
     console.log('bio.value', bio.value)
-    const yaya = await authStore.uploadProfile(username.value, firstname.value, lastname.value, pronouns.value, gradyear.value, bio.value)
+    const yaya = await authStore.uploadProfile(username.value, firstname.value, lastname.value, pronouns.value, gradyear.value, bio.value, profession.value)
     console.log('New Profile, ', yaya)
     authStore.loadUserProfile();
     
@@ -69,6 +70,9 @@ async function uploadProfile() {
                             <div class="form-group mb-6">
                                 <input type="number" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="accountCreationFormGradyear" placeholder="Graduation Year" v-model="gradyear">
                             </div>
+                        </div>
+                        <div class="form-group mb-6">
+                            <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="accountCreationFormBio" placeholder="Profession" v-model="profession">
                         </div>
                         <!-- <div class="form-group mb-6">
                             <input type="email" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput125"

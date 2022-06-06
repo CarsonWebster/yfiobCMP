@@ -43,7 +43,7 @@ export const useProfileStore = defineStore({
         return null
       }
     }, 
-    async uploadProfile(username, firstname, lastname, pronouns, gradyear, bio) {
+    async uploadProfile(username, firstname, lastname, pronouns, gradyear, bio, profession) {
       const user = supabase.auth.user()
       const { data: newProfile, error } = await supabase
       .from('profiles')
@@ -55,6 +55,7 @@ export const useProfileStore = defineStore({
           pronouns: pronouns, 
           gradyear: gradyear, 
           bio: bio, 
+          profession: profession
         },
       ])
       if (error) throw error

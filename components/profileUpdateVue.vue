@@ -17,7 +17,8 @@ const firstname = ref(profile.firstname)
 const lastname = ref(profile.lastname)
 const pronouns = ref(profile.pronouns)
 const gradyear = ref(profile.gradyear)
-const bio = ref(profile.bio)
+const bio = ref(profile.gradyear)
+const profession = ref(profile.profession)
 
 async function updateProfile() {
     console.log('Updating profile!')
@@ -27,7 +28,7 @@ async function updateProfile() {
     console.log('pronouns.value', pronouns.value)
     console.log('gradyear.value', gradyear.value)
     console.log('bio.value', bio.value)
-    const yaya = await authStore.updateProfile(username.value, firstname.value, lastname.value, pronouns.value, gradyear.value, bio.value)
+    const yaya = await authStore.updateProfile(username.value, firstname.value, lastname.value, pronouns.value, gradyear.value, bio.value, profession.value)
     console.log('Updated Profile, ', yaya)
     authStore.loadUserProfile();
     
@@ -36,7 +37,7 @@ async function updateProfile() {
 
 <template>
     <div>
-        <form>
+        <!-- <form> -->
                     <div class="form-group mb-6">
                         <input type="test" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="accountCreationFormUsername" :placeholder="profile.username" v-model="username">
                     </div>
@@ -67,6 +68,9 @@ async function updateProfile() {
                             placeholder="Password">
                     </div> -->
                     <div class="form-group mb-6">
+                        <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="accountCreationFormBio" placeholder="Profession" v-model="profession">
+                    </div>
+                    <div class="form-group mb-6">
                         <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="accountCreationFormBio" :placeholder="profile.bio" v-model="bio">
                     </div>
                     <!-- <div class="form-group form-check text-center mb-6">
@@ -78,6 +82,6 @@ async function updateProfile() {
                     <button @click='updateProfile' type="submit" class=" w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Update Information</button>
                     <!-- <button @click="logInfo">LogInfo</button>
                     <button @click="authStore.loadUserProfile">loadUserProfile</button> -->
-                </form>
+                <!-- </form> -->
     </div>
 </template>

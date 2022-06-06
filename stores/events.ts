@@ -13,25 +13,25 @@ export const useEventStore = defineStore({
   },
   actions: {
     async refreshEvents(){
-      console.log('refreshing events!')
-      console.log(this.events)
+      // console.log('refreshing events!')
+      // console.log(this.events)
       let { data: events, error } = await supabase
       .from('events')
       .select('*')
       if (error) throw error
-      console.log('return events')
-      console.log(events)
+      // console.log('return events')
+      // console.log(events)
       this.events = events
       // console.log(this.events)
     },
     async fetchEvents() {
-      console.log('fetching events')
+      // console.log('fetching events')
       let { data: events, error } = await supabase
       .from('events')
       .select('*')
       if (error) throw error
-      console.log('fetched events')
-      console.log(events)
+      // console.log('fetched events')
+      // console.log(events)
       return events
     }
   },

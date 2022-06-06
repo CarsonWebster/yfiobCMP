@@ -21,8 +21,8 @@ type Actions = {
   fetchProfiles(): void;
   fetchUserProfile(): void;
   loadUserProfile(): void;
-  uploadProfile(username, firstname, lastname, pronouns, gradyear, bio): void;
-  updateProfile(username, firstname, lastname, pronouns, gradyear, bio): void;
+  uploadProfile(username, firstname, lastname, pronouns, gradyear, bio, profession): void;
+  updateProfile(username, firstname, lastname, pronouns, gradyear, bio, profession): void;
 };
 
 export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
@@ -110,7 +110,7 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
           return null
         }
       },
-      async uploadProfile(username, firstname, lastname, pronouns, gradyear, bio) {
+      async uploadProfile(username, firstname, lastname, pronouns, gradyear, bio, profession) {
         const user = supabase.auth.user()
         const { data: newProfile, error } = await supabase
         .from('profiles')
@@ -122,13 +122,14 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
             pronouns: pronouns, 
             gradyear: gradyear, 
             bio: bio, 
+            profession: profession,
           },
         ])
         if (error) throw error
         this.currentProfile = newProfile
         return newProfile
       },
-      async updateProfile(username, firstname, lastname, pronouns, gradyear, bio) {
+      async updateProfile(username, firstname, lastname, pronouns, gradyear, bio, profession) {
         const user = supabase.auth.user()
         const { data: newProfile, error } = await supabase
         .from('profiles')
@@ -140,6 +141,7 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
             pronouns: pronouns, 
             gradyear: gradyear, 
             bio: bio, 
+            profession: profession,
           }
         ])
         .match({ user_id: user.id})
