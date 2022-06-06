@@ -7,7 +7,7 @@ const authStore = useAuthStore();
 // const profileStore = useProfileStore();
 // profileStore.fetchProfiles();
 authStore.loadUser();
-// authStore.loadUserProfile();
+authStore.loadUserProfile();
 // authStore.loadUserProfile();
 // profileStore.fetchUserProfile();
 
