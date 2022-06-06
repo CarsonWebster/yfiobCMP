@@ -18,7 +18,7 @@ authStore.loadUser();
 supabase.auth.onAuthStateChange((event) => {
   if (event === 'SIGNED_IN') {
     authStore.loadUser();
-    // authStore.loadUserProfile();
+    authStore.loadUserProfile();
   }
 });
 

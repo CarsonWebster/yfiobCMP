@@ -12,13 +12,13 @@ let { data: profile, error } = await supabase
           .match({user_id: currentUserId})
           .single()
 
-const username = ref(profile.username)
-const firstname = ref(profile.firstname)
-const lastname = ref(profile.lastname)
-const pronouns = ref(profile.pronouns)
-const gradyear = ref(profile.gradyear)
-const bio = ref(profile.gradyear)
-const profession = ref(profile.profession)
+const username = ref('')
+const firstname = ref('')
+const lastname = ref('')
+const pronouns = ref('')
+const gradyear = ref('2022')
+const bio = ref('')
+const profession = ref('')
 
 async function updateProfile() {
     console.log('Updating profile!')

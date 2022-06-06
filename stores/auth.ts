@@ -51,6 +51,17 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
         } else {
           return null
         }
+      },
+      async newGetUserProfile() {
+        let { data: profile, error } = await supabase
+          .from('profiles')
+          .select('*')
+          .match({user_id: user.value.id})
+          .single()
+          if (error) throw error
+        console.log('Success grabbed Profile', profile)
+        // this.currentProfile = profile
+        return (profile)
       }
     },
     actions: {

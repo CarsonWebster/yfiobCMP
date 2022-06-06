@@ -5,6 +5,11 @@ const authStore = useAuthStore();
 const postStore = usePostStore();
 const posts = await postStore.fetchPosts();
 
+function usertest() {
+    console.log('User Testing')
+    console.log('authStore.hasProfile', authStore.hasProfile)
+}
+
 
 </script>
 
@@ -19,6 +24,7 @@ const posts = await postStore.fetchPosts();
                     <!-- <FilterBox /> -->
                     <!-- <button @click='createPost' class=" w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Create Post</button> -->
                     <label for="createpost-modal" class="btn modal-button">Create Post</label>
+                    <button @click='usertest' class="btn">UserTest</button>
                 </div>
             </div>
             <main role="main" class="w-full flex-grow pt-1 px-3">
@@ -45,7 +51,7 @@ const posts = await postStore.fetchPosts();
             <!-- <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p> -->
             <!-- <p v-if="authStore.getCurrentUserID">Logged In</p>
             <p v-else >No sign in </p> -->
-            <create-post v-if="authStore.loadUserProfile" />
+            <create-post v-if="authStore.hasProfile" />
             <p v-else >Go to Account Settings and create a profile first!</p>
             <div class="modal-action">
             <label for="createpost-modal" class="btn">Exit</label>
