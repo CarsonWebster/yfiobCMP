@@ -7,6 +7,7 @@ const posts = await postStore.fetchPosts();
 
 function usertest() {
     console.log('User Testing')
+    console.log('Getting user profile', authStore.getUserProfile)
     console.log('authStore.hasProfile', authStore.hasProfile)
 }
 
