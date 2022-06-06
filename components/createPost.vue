@@ -31,11 +31,11 @@ async function uploadPost() {
             </div>
             <div class="w-auto h-auto flex justify-center items-center border-2 rounded-md">
                 <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
-                    <!-- <form> -->
+                    <form>
                         <!-- <input type="text" v-model="postContent" placeholder="" class="input input-bordered input-lg w-full max-w" /> -->
                         <textarea name="postContentBox" v-model="postContent" cols="45" rows="5"></textarea>
                         <button @click='uploadPost' type="submit" class=" w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Publish Post</button>
-                    <!-- </form> -->
+                    </form>
                 </div>
             </div>
         </main>
