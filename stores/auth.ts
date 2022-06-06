@@ -30,7 +30,7 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
   {
     state() {
       return {
-        currentUser: user,
+        currentUser: null,
         profiles: [],
         currentProfile: null,
       };
@@ -73,18 +73,19 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
       },
       async loadUserProfile() {
         // console.log('Hey!', this.currentUser.id)
-        if (user) {
+        if (this.isAuthenticated) {
           let { data: profile, error } = await supabase
           .from('profiles')
           .select('*')
-          .match({user_id: user.value.id})
+          .match({user_id: this.currentUser?.id})
           .single()
           if (error) throw error
           console.log('Success Loaded Profile', profile)
           this.currentProfile = profile
           
         } else {
-          console.log('no user')
+          console.log('no user, profile is null')
+          this.currentProfile = null
         }
         
       },
