@@ -1,14 +1,22 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/auth';
 // import { useProfileStore } from '@/stores/profiles';
-
+useHead({
+  title: 'Community Mentorship Platform',
+  // or, instead:
+  // titleTemplate: (title) => `My App - ${title}`,
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
+  charset: 'utf-8',
+  meta: [
+    { name: 'YFIOB Community Mentorship Platform', content: 'FIOB Community Mentorship Platform' }
+  ]
+})
 const {supabase} = useSupabase();
 const authStore = useAuthStore();
 // const profileStore = useProfileStore();
 // profileStore.fetchProfiles();
 authStore.loadUser();
 authStore.loadUserProfile();
-const devMode = true;
 // authStore.loadUserProfile();
 // profileStore.fetchUserProfile();
 
