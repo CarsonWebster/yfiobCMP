@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/auth';
-import {usePostStore } from '@/stores/posts'
+// import {usePostStore } from '@/stores/posts'
 const authStore = useAuthStore();
-const postStore = usePostStore();
-const posts = await postStore.fetchPosts();
+const {supabase} = useSupabase();
+// const postStore = usePostStore();
+// const posts = await postStore.fetchPosts();
+let { data: posts, error } = await supabase
+      .from('posts')
+      .select('*')
+      if (error) throw error
+const router = useRouter()
 
 function usertest() {
     console.log('User Testing')
     console.log('Getting user profile', authStore.getUserProfile)
     console.log('authStore.hasProfile', authStore.hasProfile)
+    router.push('/settings')
 }
 
 
@@ -25,7 +32,7 @@ function usertest() {
                     <!-- <FilterBox /> -->
                     <!-- <button @click='createPost' class=" w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Create Post</button> -->
                     <label for="createpost-modal" class="btn modal-button">Create Post</label>
-                    <button @click='usertest' class="btn">UserTest</button>
+                    <button v-if='authStore.isDev' @click='usertest' class="btn">UserTest</button>
                 </div>
             </div>
             <main role="main" class="w-full flex-grow pt-1 px-3">
@@ -33,7 +40,7 @@ function usertest() {
                 <!-- fluid-width: main content goes here -->
                 <ul>
                     <li v-for="post in posts" v-bind:key="post.id">
-                        <PostCard :title='post.name' :content='post.content' :author='post.author' :username='post.username'/>
+                        <PostCard :content='post.content' :author='post.author' :username='post.username' :avatarURL='post.avatarURL'/>
                     </li>
                 </ul>
             </main>
@@ -53,7 +60,7 @@ function usertest() {
             <!-- <p v-if="authStore.getCurrentUserID">Logged In</p>
             <p v-else >No sign in </p> -->
             <create-post v-if="authStore.hasProfile" />
-            <p v-else >Go to Account Settings and create a profile first!</p>
+            <div v-else ><p>Go to Account Settings and create a profile first!</p><button @click='usertest' class="btn">Account Page</button></div>
             <div class="modal-action">
             <label for="createpost-modal" class="btn">Exit</label>
             </div>

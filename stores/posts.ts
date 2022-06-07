@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import useSupabase from '~/composables/useSupabase'
 import { User } from '@supabase/supabase-js';
+import { ProfileCreationVue } from '~~/.nuxt/components';
 const {user} = useAuth();
 const {supabase} = useSupabase();
 
@@ -32,6 +33,7 @@ export const usePostStore = defineStore({
           username: username,
           author: author,
           content: content,
+          avatarURL: 'https://ttzewlgqdgjdgvmsnywg.supabase.co/storage/v1/object/public/avatars/' + user.id,
         },
       ])
       if (error) throw error

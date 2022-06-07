@@ -8,6 +8,7 @@ const authStore = useAuthStore();
 // profileStore.fetchProfiles();
 authStore.loadUser();
 authStore.loadUserProfile();
+const devMode = true;
 // authStore.loadUserProfile();
 // profileStore.fetchUserProfile();
 
@@ -27,8 +28,7 @@ supabase.auth.onAuthStateChange((event) => {
 <template>
 <div>
   <!-- <div v-if='authStore.isAuthenticated'> -->
-  <p>User ID:</p>
-  <p>{{authStore.getCurrentUserID}}</p>
+  <p v-if="authStore.isDev" >User ID: {{authStore.getCurrentUserID}} </p>
     <!-- <account-creation v-if="!authStore.hasProfile" /> -->
     <NuxtLayout name="default">
       <!-- <NuxtWelcome /> -->

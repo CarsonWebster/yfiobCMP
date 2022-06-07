@@ -61,7 +61,7 @@ const filteredPosts = posts.filter(post => post.username === routeUsername)
                 </div> -->
                 </div>
                 <div class="flex flex-col items-center pb-10">
-                <img class="mb-3 w-24 h-24 rounded-full shadow-lg" src="https://api.lorem.space/image/face?hash=92048" alt="profile image">
+                <img class="mb-3 w-24 h-24 rounded-full shadow-lg" :src='mentorProfile.avatar_url' alt="profile image">
                 <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{mentorProfile.firstname}} {{mentorProfile.lastname}}</h5>
                 <span class="text-sm text-gray-500 dark:text-gray-400">{{mentorProfile.profession}}</span>
                 <div class="flex mt-4 space-x-3 lg:mt-6">
@@ -74,7 +74,7 @@ const filteredPosts = posts.filter(post => post.username === routeUsername)
         </div>
         <ul>
             <li v-for="post in filteredPosts" v-bind:key="post.id">
-                <PostCard :title='post.name' :content='post.content' :author='post.author' :username='post.username'/>
+                <PostCard :title='post.name' :content='post.content' :author='post.author' :username='post.username' :avatarURL='post.avatarURL' />
             </li>
         </ul>
     </div>

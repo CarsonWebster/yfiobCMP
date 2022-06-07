@@ -6,6 +6,8 @@ const {supabase} = useSupabase();
 
 type State = {
   currentUser: User | null;
+  profiles: [] | null;
+  currentProfile: void | null;
 };
 
 type Getters = {
@@ -13,6 +15,7 @@ type Getters = {
   hasProfile(): boolean;
   getUserProfile(): void;
   getCurrentUserID(): string;
+  isDev(): boolean;
 };
 
 type Actions = {
@@ -33,6 +36,7 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
         currentUser: null,
         profiles: [],
         currentProfile: null,
+        dev: false,
       };
     },
     getters: {
@@ -44,6 +48,9 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
       },
       getUserProfile() {
         return this.currentProfile;
+      },
+      isDev() {
+        return this.dev;
       },
       getCurrentUserID() {
         if(this.currentUser) {
@@ -84,7 +91,7 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
           this.currentProfile = profile
           
         } else {
-          console.log('no user, profile is null')
+          // console.log('no user, profile is null')
           this.currentProfile = null
         }
         
@@ -129,7 +136,8 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
         .insert([
           { user_id: user.id,
             username: username, 
-            firstname: firstname, 
+            firstname: firstname,
+            avatar_url: 'https://ttzewlgqdgjdgvmsnywg.supabase.co/storage/v1/object/public/avatars/defaultAvatar.png',
             lastname: lastname, 
             pronouns: pronouns, 
             gradyear: gradyear, 

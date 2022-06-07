@@ -1,12 +1,17 @@
 <script setup lang="ts">
+import { useAuthStore } from '@/stores/auth';
+import useSupabase from '~/composables/useSupabase'
+const {supabase} = useSupabase();
+const authStore = useAuthStore();
+
 interface PostCardProps {
   title?: string;
   content?: string;
   author?: string;
   username?: string;
+  avatarURL?: string;
 }
 const postCardprops = defineProps<PostCardProps>();
-
 
 </script>
 
@@ -25,7 +30,8 @@ const postCardprops = defineProps<PostCardProps>();
         <div class="avatar">
             <div class="bg-neutral-focus text-neutral-content rounded-full w-12">
                 <!-- <span>CW</span> -->
-                <img src="https://api.lorem.space/image/face?hash=80245" />
+                <!-- <img src="https://api.lorem.space/image/face?hash=80245" /> -->
+                <img :src='avatarURL' />
             </div>
         </div>
         <!-- Name and themes -->

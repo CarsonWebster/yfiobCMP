@@ -1,5 +1,7 @@
 <script setup lang='ts'>
 import { useAuthStore } from '@/stores/auth';
+
+const router = useRouter()
 const supabase = useSupabaseClient()
 
 const isSigningIn = ref(false);
@@ -17,6 +19,7 @@ async function signIn() {
     alert('Something went wrong! Check the console for more details');
   } finally {
     isSigningIn.value = false;
+    router.push('/settings')
   }
 }
 </script>
