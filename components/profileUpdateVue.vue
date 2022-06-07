@@ -12,13 +12,13 @@ let { data: profile, error } = await supabase
           .match({user_id: currentUserId})
           .single()
 
-const username = ref('')
-const firstname = ref('')
-const lastname = ref('')
-const pronouns = ref('')
-const gradyear = ref('2022')
-const bio = ref('')
-const profession = ref('')
+const username = ref(profile.username)
+const firstname = ref(profile.firstname)
+const lastname = ref(profile.lastname)
+const pronouns = ref(profile.pronouns)
+const gradyear = ref(profile.gradyear)
+const bio = ref(profile.bio)
+const profession = ref(profile.profession)
 
 async function updateProfile() {
     // console.log('Updating profile!')
@@ -68,7 +68,7 @@ async function updateProfile() {
                             placeholder="Password">
                     </div> -->
                     <div class="form-group mb-6">
-                        <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="accountCreationFormBio" placeholder="Profession" v-model="profession">
+                        <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="accountCreationFormBio" :placeholder="profile.profession" v-model="profession">
                     </div>
                     <div class="form-group mb-6">
                         <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="accountCreationFormBio" :placeholder="profile.bio" v-model="bio">
