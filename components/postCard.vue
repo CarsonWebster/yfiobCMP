@@ -31,7 +31,7 @@ const postCardprops = defineProps<PostCardProps>();
             <div class="bg-neutral-focus text-neutral-content rounded-full w-12">
                 <!-- <span>CW</span> -->
                 <!-- <img src="https://api.lorem.space/image/face?hash=80245" /> -->
-                <img :src='avatarURL' />
+                <img :src='avatarURL' alt="https://api.lorem.space/image/face?hash=80245"/>
             </div>
         </div>
         <!-- Name and themes -->
