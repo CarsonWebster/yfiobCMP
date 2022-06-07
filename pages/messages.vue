@@ -34,7 +34,7 @@ let { data: profiles, error } = await supabase
                                 <img :src="profile.avatar_url" />
                             </div>
                         </div>
-                        <p class="text-white justify-center text-center">{{profile.firstname + profile.lastname}}</p>
+                        <p class="text-white justify-center text-center">{{profile.firstname + ' ' + profile.lastname}}</p>
                     </div>
                 </ul>
             </div>

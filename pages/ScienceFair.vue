@@ -49,7 +49,7 @@ let { data: profiles, error } = await supabase
                                   <!-- <pre class="justify-center text-center">{{profile.firstname + profile.lastname}}</pre> -->
                               </div>
                             </div>
-                            <NuxtLink :to="'/mentor/' + profile.username" ><pre class="justify-center text-center">{{profile.firstname + profile.lastname}}</pre> </NuxtLink>
+                            <NuxtLink :to="'/mentor/' + profile.username" ><pre class="justify-center text-center">{{profile.firstname + ' ' + profile.lastname}}</pre> </NuxtLink>
                             <!-- <p>tomato</p> -->
                           </li>
                         </ul>
