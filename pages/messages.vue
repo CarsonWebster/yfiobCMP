@@ -49,8 +49,8 @@ let { data: profiles, error } = await supabase
                 <message-card class="p-10" />
             </div> -->
             <div id="messages" class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
-                <message-card :sending=false content="Hello, Mr. Mosby! I was in the class you presented at on Monday. I really enjoyed your presentation and wanted to reach out as I am interested in pursuing architecture in the future, and I didn't get a chance to ask questions after your talk. I was wondering where you got your start as an architect?" />
-                <message-card :sending=true content="Hello Harry, I'm glad you liked the talk and it's great that your interested in the industry. I majored in architectural engineering in college and got my first internship from an architecture club I joined during my second year." />
+                <message-card :sending=false content="Hello, I was in the class you presented at on Monday. I really enjoyed your presentation and wanted to reach out as I am interested in pursuing architecture in the future, and I didn't get a chance to ask questions after your talk. I was wondering where you got your start as an architect?" />
+                <message-card :sending=true content="I'm glad you liked the talk and it's great that your interested in the industry. I majored in architectural engineering in college and got my first internship from an architecture club I joined during my second year." />
             </div>
         </main>
     </div>
