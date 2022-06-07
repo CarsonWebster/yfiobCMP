@@ -32,8 +32,8 @@ async function updateAvatar(event) {
 
 async function uploadAvatar() {  
     if(profile.avatar_url == 'https://ttzewlgqdgjdgvmsnywg.supabase.co/storage/v1/object/public/avatars/defaultAvatar.png') {
-        // console.log('Default URL found !')
-        // console.log('Uploading avatar !')
+        console.log('Default URL found !')
+        console.log('Uploading avatar !')
         const { data, error } = await supabase
         .storage
         .from('avatars')
@@ -41,10 +41,11 @@ async function uploadAvatar() {
             cacheControl: '3600',
             upsert: false
         })
+        console.log('uploadAvatarError, ', error)
         if (error) throw error
-        // console.log('Happy image upload!', data)
+        console.log('Happy image upload!', data)
         let newURL = 'https://ttzewlgqdgjdgvmsnywg.supabase.co/storage/v1/object/public/avatars/' + authStore.getCurrentUserID
-        // console.log('newURL, ', newURL)
+        console.log('newURL, ', newURL)
         const { data: newProfile, error: error2 } = await supabase
         .from('profiles')
         .update([
@@ -53,8 +54,9 @@ async function uploadAvatar() {
           }
         ])
         .match({ user_id: authStore.getCurrentUserID})
+        console.log('updateProfileAvatarError, ', error2)
         if (error2) throw error2
-        // console.log('Updated avatar URL!')
+        console.log('Updated avatar URL!', newProfile)
     }
     else {
         // console.log('Distinct Avatar URL found')
@@ -62,12 +64,13 @@ async function uploadAvatar() {
         const { data, error } = await supabase
         .storage
         .from('avatars')
-        .update(profile.user_id, avatarFile, {
+        .update(authStore.getCurrentUserID, avatarFile, {
             cacheControl: '3600',
             upsert: false
         })
+        console.log('updateAvatarError, ', error)
         if (error) throw error
-        // console.log('Happy image update!', data)
+        console.log('Happy image update!', data)
     }
 }
 
