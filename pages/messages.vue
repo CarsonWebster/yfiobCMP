@@ -7,7 +7,7 @@ import { useAuthStore } from '@/stores/auth';
 // console.log('New profiles', profiles)
 // console.log('userProfile: ', userProfile)
 // console.log('hasProfile: ', profileStore.hasProfile)
-let mentors = ["Karim Benzema", "Ted Mosby", "Lily Aldrin","Robin Scherbatsky"];
+let mentors = ["Ted Mosby", "Karim Benzema", "Lily Aldrin","Robin Scherbatsky"];
 
 </script>
 
@@ -25,9 +25,9 @@ let mentors = ["Karim Benzema", "Ted Mosby", "Lily Aldrin","Robin Scherbatsky"];
                 <ul class="flex flex-col overflow-hidden">
                     <p class="font-mono text-xl py-6 text-white">Mentors</p>
                     <div v-for="mentor in mentors" v-bind:key="mentor" class="flex items-center flex-inline py-4 border-b-2 border-gray-400 rounded-sm">
-                        <div class="avatar placeholder pr-6">
-                            <div class="bg-neutral-focus text-neutral-content rounded-full w-12">
-                                <span></span>
+                        <div class="avatar">
+                            <div class="w-8 rounded-full">
+                                <img src="https://ttzewlgqdgjdgvmsnywg.supabase.co/storage/v1/object/public/avatars/defaultAvatar.png" />
                             </div>
                         </div>
                         <p class="text-white justify-center text-center">{{mentor}}</p>
@@ -45,8 +45,8 @@ let mentors = ["Karim Benzema", "Ted Mosby", "Lily Aldrin","Robin Scherbatsky"];
                 <message-card class="p-10" />
             </div> -->
             <div id="messages" class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
-                <message-card :sending=false content="Hello dude!" />
-                <message-card :sending=true content="Hey there!" />
+                <message-card :sending=false content="Hello, Mr. Mosby! I was in the class you presented at on Monday. I really enjoyed your presentation and wanted to reach out as I am interested in pursuing architecture in the future, and I didn't get a chance to ask questions after your talk. I was wondering where you got your start as an architect?" />
+                <message-card :sending=true content="Hello Harry, I'm glad you liked the talk and it's great that your interested in the industry. I majored in architectural engineering in college and got my first internship from an architecture club I joined during my second year." />
             </div>
         </main>
     </div>
