@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/auth';
+import useSupabase from '~/composables/useSupabase'
+const {supabase} = useSupabase();
 // import {useProfileStore } from '@/stores/profiles'
 // const profileStore = useProfileStore();
 // const profiles = await profileStore.fetchProfiles();
@@ -8,7 +10,9 @@ import { useAuthStore } from '@/stores/auth';
 // console.log('userProfile: ', userProfile)
 // console.log('hasProfile: ', profileStore.hasProfile)
 let mentors = ["Ted Mosby", "Karim Benzema", "Lily Aldrin","Robin Scherbatsky"];
-
+let { data: profiles, error } = await supabase
+          .from('profiles')
+          .select('*')
 </script>
 
 <template>
@@ -24,13 +28,13 @@ let mentors = ["Ted Mosby", "Karim Benzema", "Lily Aldrin","Robin Scherbatsky"];
                 <!-- navigation -->
                 <ul class="flex flex-col overflow-hidden">
                     <p class="font-mono text-xl py-6 text-white">Mentors</p>
-                    <div v-for="mentor in mentors" v-bind:key="mentor" class="flex items-center flex-inline py-4 border-b-2 border-gray-400 rounded-sm">
+                    <div v-for="profile in profiles" v-bind:key="profile" class="flex items-center flex-inline py-4 border-b-2 border-gray-400 rounded-sm">
                         <div class="avatar">
                             <div class="w-8 rounded-full">
-                                <img src="https://ttzewlgqdgjdgvmsnywg.supabase.co/storage/v1/object/public/avatars/defaultAvatar.png" />
+                                <img :src="profile.avatar_url" />
                             </div>
                         </div>
-                        <p class="text-white justify-center text-center">{{mentor}}</p>
+                        <p class="text-white justify-center text-center">{{profile.firstname + profile.lastname}}</p>
                     </div>
                 </ul>
             </div>
