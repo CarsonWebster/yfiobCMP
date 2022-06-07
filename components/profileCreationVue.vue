@@ -11,15 +11,15 @@ const bio = ref('')
 const profession = ref('')
 
 async function uploadProfile() {
-    console.log('Uploading profile!')
-    console.log('username.value', username.value)
-    console.log('firstname.value', firstname.value)
-    console.log('lastname.value', lastname.value)
-    console.log('pronouns.value', pronouns.value)
-    console.log('gradyear.value', gradyear.value)
-    console.log('bio.value', bio.value)
+    // console.log('Uploading profile!')
+    // console.log('username.value', username.value)
+    // console.log('firstname.value', firstname.value)
+    // console.log('lastname.value', lastname.value)
+    // console.log('pronouns.value', pronouns.value)
+    // console.log('gradyear.value', gradyear.value)
+    // console.log('bio.value', bio.value)
     const yaya = await authStore.uploadProfile(username.value, firstname.value, lastname.value, pronouns.value, gradyear.value, bio.value, profession.value)
-    console.log('New Profile, ', yaya)
+    // console.log('New Profile, ', yaya)
     authStore.loadUserProfile();
     
 }

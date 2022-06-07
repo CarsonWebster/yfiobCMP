@@ -7,8 +7,8 @@ const { user, isLoggedIn, logout } = useAuth();
 async function fullLogout() {
     authStore.clearUser()
     logout()
-    console.log('Full log out, user: ')
-    console.log(authStore.currentUser)
+    // console.log('Full log out, user: ')
+    // console.log(authStore.currentUser)
 }
 </script>
 

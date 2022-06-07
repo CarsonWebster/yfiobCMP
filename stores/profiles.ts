@@ -23,9 +23,9 @@ export const useProfileStore = defineStore({
     // },
     async fetchUserProfile() {
       const user = supabase.auth.user()
-      console.log('weird fetch user stuff', user)
+      // console.log('weird fetch user stuff', user)
       if (user) {
-        console.log('fetching profiles with id', user.id)
+        // console.log('fetching profiles with id', user.id)
         let { data: profile, error } = await supabase
         .from('profiles')
         .select('*')
@@ -38,7 +38,7 @@ export const useProfileStore = defineStore({
         return profile
       }
       else {
-        console.log('fetchUserProfile Error: No user')
+        // console.log('fetchUserProfile Error: No user')
         this.currentProfile = null
         return null
       }

@@ -66,7 +66,7 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
           .match({user_id: user.value.id})
           .single()
           if (error) throw error
-        console.log('Success grabbed Profile', profile)
+        // console.log('Success grabbed Profile', profile)
         // this.currentProfile = profile
         return (profile)
       }
@@ -87,7 +87,7 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
           .match({user_id: this.currentUser?.id})
           .single()
           if (error) throw error
-          console.log('Success Loaded Profile', profile)
+          // console.log('Success Loaded Profile', profile)
           this.currentProfile = profile
           
         } else {
@@ -109,9 +109,9 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
       },
       async fetchUserProfile() {
         const user = supabase.auth.user()
-        console.log('weird fetch user stuff', user)
+        // console.log('weird fetch user stuff', user)
         if (user) {
-          console.log('fetching profiles with id', user.id)
+          // console.log('fetching profiles with id', user.id)
           let { data: profile, error } = await supabase
           .from('profiles')
           .select('*')
@@ -124,7 +124,7 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
           return profile
         }
         else {
-          console.log('fetchUserProfile Error: No user')
+          // console.log('fetchUserProfile Error: No user')
           this.currentProfile = null
           return null
         }

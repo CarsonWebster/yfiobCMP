@@ -15,8 +15,8 @@ const { data: profile, error } = await supabase
 
 // let author = profile.firstname + ' ' + profile.lastname
 async function uploadPost() {
-    console.log('Uploading Post with author', profile.firstname+' '+profile.lastname)
-    console.log(postContent)
+    // console.log('Uploading Post with author', profile.firstname+' '+profile.lastname)
+    // console.log(postContent)
     // let returnPost = await postStore.publishPost(profile.username, profile.firstname+' '+profile.lastname, postContent.value)
     const { data: newPost, error } = await supabase
       .from('posts')
@@ -29,7 +29,7 @@ async function uploadPost() {
         },
       ])
       if (error) throw error
-      console.log(newPost)
+    //   console.log(newPost)
       return newPost
     // console.log(returnPost)
 }

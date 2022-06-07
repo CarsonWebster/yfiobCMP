@@ -5,8 +5,8 @@ const {supabase} = useSupabase();
 const authStore = useAuthStore();
 const route = useRoute()
 const routeUsername = route.params.username
-console.log('Mentor page')
-console.log(routeUsername)
+// console.log('Mentor page')
+// console.log(routeUsername)
 let { data: mentorProfile, error } = await supabase
           .from('profiles')
           .select('*')

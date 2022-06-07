@@ -11,11 +11,11 @@ let { data: profile, error } = await supabase
           .match({user_id: authStore.getCurrentUserID})
           .single()
 async function updateAvatar(event) {
-    console.log('Updating avatar')
-    console.log(event)
-    console.log(event.target.files[0])
+    // console.log('Updating avatar')
+    // console.log(event)
+    // console.log(event.target.files[0])
     avatarFile = event.target.files[0]
-    console.log(avatarFile.name)
+    // console.log(avatarFile.name)
 }
 // async function findAvatar() {
 //     console.log('Finding Avatar')
@@ -32,8 +32,8 @@ async function updateAvatar(event) {
 
 async function uploadAvatar() {  
     if(profile.avatar_url == 'https://ttzewlgqdgjdgvmsnywg.supabase.co/storage/v1/object/public/avatars/defaultAvatar.png') {
-        console.log('Default URL found !')
-        console.log('Uploading avatar !')
+        // console.log('Default URL found !')
+        // console.log('Uploading avatar !')
         const { data, error } = await supabase
         .storage
         .from('avatars')
@@ -42,9 +42,9 @@ async function uploadAvatar() {
             upsert: false
         })
         if (error) throw error
-        console.log('Happy image upload!', data)
+        // console.log('Happy image upload!', data)
         let newURL = 'https://ttzewlgqdgjdgvmsnywg.supabase.co/storage/v1/object/public/avatars/' + authStore.getCurrentUserID
-        console.log('newURL, ', newURL)
+        // console.log('newURL, ', newURL)
         const { data: newProfile, error: error2 } = await supabase
         .from('profiles')
         .update([
@@ -54,11 +54,11 @@ async function uploadAvatar() {
         ])
         .match({ user_id: authStore.getCurrentUserID})
         if (error2) throw error2
-        console.log('Updated avatar URL!')
+        // console.log('Updated avatar URL!')
     }
     else {
-        console.log('Distinct Avatar URL found')
-        console.log('Updating avatar...')
+        // console.log('Distinct Avatar URL found')
+        // console.log('Updating avatar...')
         const { data, error } = await supabase
         .storage
         .from('avatars')
@@ -67,7 +67,7 @@ async function uploadAvatar() {
             upsert: false
         })
         if (error) throw error
-        console.log('Happy image update!', data)
+        // console.log('Happy image update!', data)
     }
 }
 

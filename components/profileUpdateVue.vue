@@ -21,15 +21,15 @@ const bio = ref('')
 const profession = ref('')
 
 async function updateProfile() {
-    console.log('Updating profile!')
-    console.log('username.value', username.value)
-    console.log('firstname.value', firstname.value)
-    console.log('lastname.value', lastname.value)
-    console.log('pronouns.value', pronouns.value)
-    console.log('gradyear.value', gradyear.value)
-    console.log('bio.value', bio.value)
+    // console.log('Updating profile!')
+    // console.log('username.value', username.value)
+    // console.log('firstname.value', firstname.value)
+    // console.log('lastname.value', lastname.value)
+    // console.log('pronouns.value', pronouns.value)
+    // console.log('gradyear.value', gradyear.value)
+    // console.log('bio.value', bio.value)
     const yaya = await authStore.updateProfile(username.value, firstname.value, lastname.value, pronouns.value, gradyear.value, bio.value, profession.value)
-    console.log('Updated Profile, ', yaya)
+    // console.log('Updated Profile, ', yaya)
     authStore.loadUserProfile();
     
 }
